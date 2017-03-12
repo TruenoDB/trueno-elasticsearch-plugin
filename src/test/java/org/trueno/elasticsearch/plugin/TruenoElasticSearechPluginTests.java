@@ -131,12 +131,6 @@ public class TruenoElasticSearechPluginTests extends TestCase {
 
         final Node node = runner.node();
 
-//        try (CurlResponse curlResponse = Curl.get(node, "/" + index + "/_sample").execute()) {
-//            final String content = curlResponse.getContentAsString();
-//            assertNotNull(content);
-//            assertEquals(index, curlResponse.getContentAsMap().get("index"));
-//        }
-
         // update alias
         final String alias = index + "_alias";
         {
@@ -211,81 +205,12 @@ public class TruenoElasticSearechPluginTests extends TestCase {
             assertEquals(10, searchResponse.getHits().hits().length);
         }
 
-//        // http access
-//        // get
-//        try (CurlResponse curlResponse = Curl.get(node, "/_search")
-//                .param("q", "*:*").execute()) {
-//            final String content = curlResponse.getContentAsString();
-//            assertNotNull(content);
-//            assertTrue(content.contains("total"));
-//            final Map<String, Object> map = curlResponse.getContentAsMap();
-//            assertNotNull(map);
-//            assertEquals("false", map.get("timed_out").toString());
-//        }
-//
-//        // post
-//        try (CurlResponse curlResponse = Curl
-//                .post(node, "/" + index + "/" + type)
-//                .body("{\"id\":\"2000\",\"msg\":\"test 2000\"}").execute()) {
-//            final Map<String, Object> map = curlResponse.getContentAsMap();
-//            assertNotNull(map);
-//            assertEquals("true", map.get("created").toString());
-//        }
-//
-//        // put
-//        try (CurlResponse curlResponse = Curl
-//                .put(node, "/" + index + "/" + type + "/2001")
-//                .body("{\"id\":\"2001\",\"msg\":\"test 2001\"}").execute()) {
-//            final Map<String, Object> map = curlResponse.getContentAsMap();
-//            assertNotNull(map);
-//            assertEquals("true", map.get("created").toString());
-//        }
-//
-//        // delete
-//        try (CurlResponse curlResponse = Curl.delete(node,
-//                "/" + index + "/" + type + "/2001").execute()) {
-//            final Map<String, Object> map = curlResponse.getContentAsMap();
-//            assertNotNull(map);
-//            assertEquals("true", map.get("found").toString());
-//        }
-//
-//        // post
-//        try (CurlResponse curlResponse = Curl
-//                .post(node, "/" + index + "/" + type)
-//                .onConnect(new CurlRequest.ConnectionBuilder() {
-//                    @Override
-//                    public void onConnect(CurlRequest curlRequest,
-//                            HttpURLConnection connection) {
-//                        connection.setDoOutput(true);
-//                        try (BufferedWriter writer = new BufferedWriter(
-//                                new OutputStreamWriter(connection
-//                                        .getOutputStream(), "UTF-8"))) {
-//                            writer.write("{\"id\":\"2002\",\"msg\":\"test 2002\"}");
-//                            writer.flush();
-//                        } catch (IOException e) {
-//                            throw new CurlException("Failed to write data.", e);
-//                        }
-//                    }
-//                }).execute()) {
-//            final Map<String, Object> map = curlResponse.getContentAsMap();
-//            assertNotNull(map);
-//            assertEquals("true", map.get("created").toString());
-//        }
 
         // close 1 node
         final Node node1 = runner.node();
         node1.close();
-//        final Node node2 = runner.node();
-//        assertTrue(node1 != node2);
+
         assertTrue(runner.getNode(0).isClosed());
-//        assertFalse(runner.getNode(1).isClosed());
-//        assertFalse(runner.getNode(2).isClosed());
-
-        // restart a node
         assertTrue(runner.startNode(0));
-//        assertFalse(runner.startNode(1));
-//        assertFalse(runner.startNode(2));
-
-        //runner.ensureGreen();
     }
 }
