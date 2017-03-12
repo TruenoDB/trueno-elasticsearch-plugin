@@ -20,7 +20,7 @@ import org.elasticsearch.search.sort.SortBuilders;
 
 import junit.framework.TestCase;
 
-public class TruenoElasticSearechPluginTests extends TestCase {
+public class TruenoElasticSearchPluginTests extends TestCase {
 
     private ElasticsearchClusterRunner runner;
 
