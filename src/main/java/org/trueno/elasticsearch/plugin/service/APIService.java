@@ -31,12 +31,17 @@ public class APIService extends AbstractLifecycleComponent<APIService> {
     public APIService(final Settings settings) {
         super(settings);
         logger.info("CREATE APIService");
+        logger.info("trueno.api.port: " + settings.get("trueno.api.port"));
+        logger.info("trueno.api.hostname: " + settings.get("trueno.api.hostname"));
+        logger.info("path.home: " + settings.get("path.home"));
+        logger.info("cluster.name: " + settings.get("cluster.name"));
 
         this.port = Integer.parseInt(settings.get("trueno.api.port"));
         this.hostname = settings.get("trueno.api.hostname");
         this.pathHome = settings.get("path.home");
         this.clusterName = settings.get("cluster.name");
         this.settings = settings;
+
     }
 
     @Override
