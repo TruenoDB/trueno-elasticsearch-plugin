@@ -7,7 +7,7 @@
 	<includeBaseDirectory>false</includeBaseDirectory>
 	<files>
 		<file>
-			<source>${basedir}/src/main/plugin-metadata/plugin-descriptor.properties</source>
+			<source>${basedir}/src/main/resources/plugin-descriptor.properties</source>
 			<outputDirectory></outputDirectory>
 			<filtered>true</filtered>
 		</file>
@@ -19,6 +19,7 @@
 			<useTransitiveFiltering>true</useTransitiveFiltering>
 			<excludes>
 				<exclude>org.elasticsearch:elasticsearch</exclude>
+				<exclude>com.fasterxml.jackson.core</exclude>
 			</excludes>
 		</dependencySet>
 	</dependencySets>
