@@ -62,12 +62,12 @@ public class APIService extends AbstractLifecycleComponent<APIService> {
         this.server = server;
 
         /* Instantiate service nodeClient */
-        Settings.Builder b = NodeBuilder.nodeBuilder().settings();
-        b.put("path.home",this.pathHome );
-        this.node = NodeBuilder.nodeBuilder().settings(b).local(true).clusterName(this.clusterName).node();
+//        Settings.Builder b = NodeBuilder.nodeBuilder().settings();
+//        b.put("path.home",this.pathHome );
+//        this.node = NodeBuilder.nodeBuilder().settings(b).local(true).clusterName(this.clusterName).node();
 
         /* create the elasticSearch Client for our API */
-        final ElasticClient eClient = new ElasticClient(node.client());
+//        final ElasticClient eClient = new ElasticClient(node.client());
 
         /* set search event listener */
         server.addEventListener("search", SearchObject.class, new DataListener<SearchObject>() {
@@ -79,7 +79,7 @@ public class APIService extends AbstractLifecycleComponent<APIService> {
                 //long startTime = System.currentTimeMillis();
 
                 /* get results */
-                Map<String,Object>[] results = eClient.search(data);
+               // Map<String,Object>[] results = eClient.search(data);
 
                 /* print time */
                 //long estimatedTime = System.currentTimeMillis() - startTime;
@@ -87,7 +87,7 @@ public class APIService extends AbstractLifecycleComponent<APIService> {
                 //System.out.println("Execution time: " + estimatedTime +"ms");
 
                 /* send back result */
-                ackRequest.sendAckData(results);
+                //ackRequest.sendAckData(results);
             }
         });
         /* set bulk event listener */
@@ -95,10 +95,10 @@ public class APIService extends AbstractLifecycleComponent<APIService> {
             @Override
             public void onData(SocketIOClient client, BulkObject data, AckRequest ackRequest) {
                 /* get results */
-                String result = eClient.bulk(data);
+                //String result = eClient.bulk(data);
 
                 /* sending Acknowledge to socket client */
-                ackRequest.sendAckData(result);
+                //ackRequest.sendAckData(result);
             }
         });
 
@@ -114,6 +114,7 @@ public class APIService extends AbstractLifecycleComponent<APIService> {
             }
         });
 
+        logger.info("FINISH START APIService");
     }
 
     @Override
@@ -121,7 +122,7 @@ public class APIService extends AbstractLifecycleComponent<APIService> {
         logger.info("STOP APIService");
 
         // TODO Your code..
-        this.node.close();
+        //this.node.close();
         this.server.stop();
     }
 

@@ -11,6 +11,11 @@
 			<outputDirectory></outputDirectory>
 			<filtered>true</filtered>
 		</file>
+		<file>
+			<source>${basedir}/src/main/resources/plugin-security.policy</source>
+			<outputDirectory></outputDirectory>
+			<filtered>true</filtered>
+		</file>
 	</files>
 	<dependencySets>
 		<dependencySet>
@@ -19,7 +24,6 @@
 			<useTransitiveFiltering>true</useTransitiveFiltering>
 			<excludes>
 				<exclude>org.elasticsearch:elasticsearch</exclude>
-				<exclude>com.fasterxml.jackson.core</exclude>
 			</excludes>
 		</dependencySet>
 	</dependencySets>
